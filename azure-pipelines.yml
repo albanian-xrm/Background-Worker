@@ -11,7 +11,7 @@ steps:
   displayName: 'Hello from Albanian Xrm'
 
 - powershell: |
-    echo "##vso[task.setvariable variable=configuration;isOutput=true]$(IF($env:BRANCH -eq "refs/heads/master"){"Azure Pipelines"}else{"release"})"
+    echo "##vso[task.setvariable variable=configuration;isOutput=true]$(IF($env:BRANCH -eq "refs/heads/main"){"Azure Pipelines"}else{"release"})"
     echo "##vso[task.setvariable variable=BuildNumber;isOutput=true]$(($env:BuildNumber).Substring(($env:BuildNumber).LastIndexOf('+')+1))"
   name: MyVars
   env: 
@@ -23,14 +23,14 @@ steps:
   name: SignKey 
   inputs:
     secureFile: 'AlbanianXrm.BackgroundWorker.snk'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')  
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')  
   displayName: 'Secret'
 
 - powershell: echo "##vso[task.setvariable variable=Path;isOutput=true]$((get-item $env:SECURE_FILE).Directory.FullName)"
   name: secretFolder
   env:
     Secure_File: $(SignKey.secureFilePath)
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')  
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')  
   displayName: 'Secret folder'
 
 - task: CopyFiles@2
@@ -39,7 +39,7 @@ steps:
     contents: 'AlbanianXrm.BackgroundWorker.snk' 
     targetFolder: 'AlbanianXrm.BackgroundWorker'
     overWrite: true 
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')  
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')  
   displayName: 'Overwrite AlbanianXrm.BackgroundWorker SignKey'
 
 - task: MSBuild@1
@@ -56,13 +56,13 @@ steps:
     packagesToPack: '**/*.nuspec'
     packDestination: '$(Build.ArtifactStagingDirectory)/NuGet'
     buildProperties: version=$(MyVars.BuildNumber);configuration=Release
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))  
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))  
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publishing NuGet package to pipeline'
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)/NuGet'
     artifactName: 'NuGet Package'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))  
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))  
       
     
