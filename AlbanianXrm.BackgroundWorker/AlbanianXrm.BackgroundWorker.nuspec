@@ -1,0 +1,27 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>AlbanianXrm.BackgroundWorker</id>
+    <version>$version$</version>
+    <title>AlbanianXrm.BackgroundWorker</title>
+    <authors>Betim Beja</authors>
+    <owners>Betim Beja;AlbanianXrm</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/albanian-xrm/Background-Worker</projectUrl>
+    <repository type="git" url="https://github.com/albanian-xrm/Background-Worker.git" />
+    <iconUrl>https://raw.githubusercontent.com/albanian-xrm/Background-Worker/master/Logo_80x80.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This package contains an alternative implementation for Background Worker.</description>
+    <releaseNotes>
+v$version$:
+- First Release. 
+
+For older releases go here: https://github.com/albanian-xrm/Background-Worker/releases
+    </releaseNotes>
+    <copyright>Copyright 2021</copyright>
+    <tags>AlbanianXrm BackgroundWorkHandler</tags>
+  </metadata>
+  <files>
+    <file src="bin\$configuration$\net462\AlbanianXrm.BackgroundWorker.dll" target="lib\net462\" />
+  </files>
+</package>
