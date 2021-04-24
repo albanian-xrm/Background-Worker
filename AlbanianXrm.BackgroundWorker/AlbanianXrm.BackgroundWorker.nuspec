@@ -14,7 +14,8 @@
     <description>This package contains an alternative implementation for Background Worker.</description>
     <releaseNotes>
 v$version$:
-- First Release. 
+- Added Progress helper class
+- Changed visibility for DoWork()
 
 For older releases go here: https://github.com/albanian-xrm/Background-Worker/releases
     </releaseNotes>

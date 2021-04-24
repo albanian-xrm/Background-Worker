@@ -20,7 +20,7 @@ namespace AlbanianXrm.BackgroundWorker
             this.synchronizationContext = synchronizationContext;
         }
 
-        internal abstract void DoWork();
+        public abstract void DoWork();
 
         protected void NotifyOnBeforeStart()
         {

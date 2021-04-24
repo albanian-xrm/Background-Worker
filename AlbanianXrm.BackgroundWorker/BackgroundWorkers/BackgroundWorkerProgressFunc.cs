@@ -12,7 +12,7 @@ namespace AlbanianXrm.BackgroundWorker
 
         public T Argument { get; set; }
 
-        internal override void DoWork()
+       public override void DoWork()
         {
             NotifyOnBeforeStart();
             task = Task.Factory.StartNew(InternalDoWork, CancellationToken.None, TaskCreationOptions.PreferFairness, TaskScheduler.Default);
