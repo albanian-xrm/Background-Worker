@@ -19,6 +19,13 @@ steps:
     BuildNumber: $(Build.BuildNumber)
   displayName: 'Set Configuration Variable'
 
+- task: NuGetCommand@2
+  displayName: 'Restoring NuGet packages'
+  inputs:
+    command: 'restore'
+    restoreSolution: '**/*.sln'
+    feedsToUse: 'select'
+
 - task: DownloadSecureFile@1
   name: SignKey 
   inputs:
