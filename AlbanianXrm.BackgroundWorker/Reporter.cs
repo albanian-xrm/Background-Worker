@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AlbanianXrm.XrmToolBox.Shared
+namespace AlbanianXrm.BackgroundWorker
 {
     public class Reporter<TProgress>
     {
