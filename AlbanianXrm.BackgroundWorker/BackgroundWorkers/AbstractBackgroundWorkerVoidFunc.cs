@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace AlbanianXrm.BackgroundWorker
 {
-    internal abstract class AbstractBackgroundWorkerVoidFunc<TArgument> : BackgroundWorker
+    internal abstract class AbstractBackgroundWorkerVoidFunc<TArgument> : AlBackgroundWorker
     {
         public Action<TArgument, Exception> WorkFinished { get; set; }
 

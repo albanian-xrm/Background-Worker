@@ -4,16 +4,16 @@ using System.Threading;
 
 namespace AlbanianXrm.BackgroundWorker
 {
-    public class BackgroundWorkHandler
+    public class AlBackgroundWorkHandler
     {
-        private readonly Queue<BackgroundWorker> queue;
+        private readonly Queue<AlBackgroundWorker> queue;
         private readonly SynchronizationContext synchronizationContext;
         private readonly SendOrPostCallback postCallback;
         private readonly int UIThread;
 
-        public BackgroundWorkHandler()
+        public AlBackgroundWorkHandler()
         {
-            this.queue = new Queue<BackgroundWorker>();
+            this.queue = new Queue<AlBackgroundWorker>();
             synchronizationContext = SynchronizationContext.Current;
             this.postCallback = new SendOrPostCallback(EnqueueBackgroundWork);
             UIThread = Thread.CurrentThread.ManagedThreadId;
@@ -21,10 +21,10 @@ namespace AlbanianXrm.BackgroundWorker
 
         private void EnqueueBackgroundWork(object work)
         {
-            EnqueueBackgroundWork((BackgroundWorker)work);
+            EnqueueBackgroundWork((AlBackgroundWorker)work);
         }
 
-        public void EnqueueBackgroundWork(BackgroundWorker work)
+        public void EnqueueBackgroundWork(AlBackgroundWorker work)
         {
             if (UIThread != Thread.CurrentThread.ManagedThreadId)
             {

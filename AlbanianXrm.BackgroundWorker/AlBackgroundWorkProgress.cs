@@ -2,28 +2,29 @@
 
 namespace AlbanianXrm.BackgroundWorker
 {
-    internal class BackgroundWorkProgress<TProgress>
+    internal class AlBackgroundWorkProgress<TProgress>
     {
         public bool Finished { get; set; }
 
-        public BackgroundWorkProgress() : this(null)
+        public AlBackgroundWorkProgress() : this(null)
         {
         }
 
-        public BackgroundWorkProgress(Exception exception)
+        public AlBackgroundWorkProgress(Exception exception)
         {
-            this.Result = new BackgroundWorkResult(exception);
+            this.Result = new AlBackgroundWorkResult(exception);
             this.Finished = true;
         }
 
-        public BackgroundWorkProgress(TProgress progress)
+        public AlBackgroundWorkProgress(int percentage, TProgress progress)
         {
+            this.Percentage = percentage;
             this.Progress = progress;
             this.Finished = false;
         }
-        public BackgroundWorkResult Result { get; set; }
+        public AlBackgroundWorkResult Result { get; set; }
 
-
+        public int Percentage { get; set; }
         public TProgress Progress { get; set; }
     }
 
@@ -83,11 +84,14 @@ namespace AlbanianXrm.BackgroundWorker
 
         public BackgroundWorkProgress(T value) : base(value) { }
 
-        public BackgroundWorkProgress(TProgress progress)
+        public BackgroundWorkProgress(int percentage, TProgress progress)
         {
+            this.Percentage = percentage;
             this.Progress = progress;
             this.Finished = false;
         }
+
+        public int Percentage { get; set; }
 
         public TProgress Progress { get; set; }
     }
@@ -104,11 +108,14 @@ namespace AlbanianXrm.BackgroundWorker
 
         public BackgroundWorkProgress(T argument, TValue value) : base(argument, value) { }
 
-        public BackgroundWorkProgress(TProgress progress)
+        public BackgroundWorkProgress(int percentage, TProgress progress) 
         {
+            this.Percentage = percentage;
             this.Progress = progress;
             this.Finished = false;
         }
+
+        public int Percentage { get; set; }
 
         public TProgress Progress { get; set; }
     }

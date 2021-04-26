@@ -4,15 +4,15 @@ namespace AlbanianXrm.BackgroundWorker
 {
     public class Reporter<TProgress>
     {
-        private readonly Action<TProgress> reporter;
-        internal Reporter(Action<TProgress> reporter)
+        private readonly Action<int, TProgress> reporter;
+        internal Reporter(Action<int, TProgress> reporter)
         {
             this.reporter = reporter;
         }
 
-        public void ReportProgress(TProgress progress)
+        public void ReportProgress(int percentage, TProgress progress)
         {
-            reporter(progress);
+            reporter(percentage, progress);
         }
     }
 }

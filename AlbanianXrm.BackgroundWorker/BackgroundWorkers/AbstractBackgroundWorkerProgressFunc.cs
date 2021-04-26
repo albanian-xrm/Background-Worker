@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace AlbanianXrm.BackgroundWorker
 {
-    internal abstract class AbstractBackgroundWorkerProgressFunc<T, TValue, TProgress> : BackgroundWorker
+    internal abstract class AbstractBackgroundWorkerProgressFunc<T, TValue, TProgress> : AlBackgroundWorker
     {
         public AbstractBackgroundWorkerProgressFunc(SynchronizationContext synchronizationContext) : base(synchronizationContext)
         {
@@ -14,9 +14,9 @@ namespace AlbanianXrm.BackgroundWorker
 
         public Action<T, TValue, Exception> WorkFinished { get; set; }
 
-        protected void InternalProgress(TProgress progress)
+        protected void InternalProgress(int percentage, TProgress progress)
         {
-            synchronizationContext.Post(postCallback, new BackgroundWorkProgress<T, TValue, TProgress>(progress));
+            synchronizationContext.Post(postCallback, new BackgroundWorkProgress<T, TValue, TProgress>(percentage, progress));
         }
 
         private void InternalProgress(object stateObject)

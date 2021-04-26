@@ -2,16 +2,16 @@
 
 namespace AlbanianXrm.BackgroundWorker
 {
-    internal class BackgroundWorkResult
+    internal class AlBackgroundWorkResult
     {
-        public BackgroundWorkResult(Exception exception)
+        public AlBackgroundWorkResult(Exception exception)
         {
             this.Exception = exception;
         }
         public Exception Exception { get; internal set; }
     }
 
-    internal class BackgroundWorkResult<T> : BackgroundWorkResult
+    internal class BackgroundWorkResult<T> : AlBackgroundWorkResult
     {
         public BackgroundWorkResult(Exception exception) : base(exception) { }
 

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace AlbanianXrm.BackgroundWorker
 {
-    public abstract partial class BackgroundWorker
+    public abstract class AlBackgroundWorker
     {
         public delegate void LifetimeEvent();
         public event LifetimeEvent OnBeforeStart;
@@ -15,7 +15,7 @@ namespace AlbanianXrm.BackgroundWorker
         protected SendOrPostCallback postCallback;
         public static event EventHandler<Exception> UnhandledException;
 
-        protected BackgroundWorker(SynchronizationContext synchronizationContext)
+        protected AlBackgroundWorker(SynchronizationContext synchronizationContext)
         {
             this.synchronizationContext = synchronizationContext;
         }

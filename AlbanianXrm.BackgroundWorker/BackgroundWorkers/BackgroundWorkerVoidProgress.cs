@@ -24,10 +24,10 @@ namespace AlbanianXrm.BackgroundWorker
             }
             catch (Exception e)
             {
-                synchronizationContext.Post(postCallback, new BackgroundWorkProgress<TProgress>(e));
+                synchronizationContext.Post(postCallback, new AlBackgroundWorkProgress<TProgress>(e));
                 return;
             }
-            synchronizationContext.Post(postCallback, new BackgroundWorkProgress<TProgress>());
+            synchronizationContext.Post(postCallback, new AlBackgroundWorkProgress<TProgress>());
             return;
         }
     }
