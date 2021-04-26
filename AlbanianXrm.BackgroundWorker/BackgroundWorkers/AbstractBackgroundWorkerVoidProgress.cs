@@ -10,7 +10,7 @@ namespace AlbanianXrm.BackgroundWorker
             base.postCallback = new SendOrPostCallback(InternalProgress);
         }
 
-        public Action<TProgress> OnProgress { get; set; }
+        public Action<int, TProgress> OnProgress { get; set; }
 
         public Action<Exception> WorkFinished { get; set; }
 
@@ -28,7 +28,7 @@ namespace AlbanianXrm.BackgroundWorker
                 {
                     WorkFinished?.Invoke(state.Result.Exception);
                 }
-                else { OnProgress?.Invoke(state.Progress); }
+                else { OnProgress?.Invoke(state.Percentage, state.Progress); }
             }
             catch (Exception ex)
             {

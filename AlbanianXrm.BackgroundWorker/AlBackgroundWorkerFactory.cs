@@ -48,7 +48,7 @@ namespace AlbanianXrm.BackgroundWorker
             };
         }
 
-        public static AlBackgroundWorker NewWorker<TProgress>(Action<Reporter<TProgress>> work, Action<TProgress> progress, Action<Exception> workFinished = null)
+        public static AlBackgroundWorker NewWorker<TProgress>(Action<Reporter<TProgress>> work, Action<int, TProgress> progress, Action<Exception> workFinished = null)
         {
             return new BackgroundWorkerVoidProgress<TProgress>(synchronizationContext)
             {
@@ -57,7 +57,7 @@ namespace AlbanianXrm.BackgroundWorker
                 WorkFinished = workFinished
             };
         }
-        public static AlBackgroundWorker NewWorker<TResult, TProgress>(Func<Reporter<TProgress>, TResult> work, Action<TProgress> progress, Action<TResult, Exception> workFinished = null)
+        public static AlBackgroundWorker NewWorker<TResult, TProgress>(Func<Reporter<TProgress>, TResult> work, Action<int, TProgress> progress, Action<TResult, Exception> workFinished = null)
         {
             return new BackgroundWorkerProgress<TResult, TProgress>(synchronizationContext)
             {
@@ -66,7 +66,7 @@ namespace AlbanianXrm.BackgroundWorker
                 WorkFinished = workFinished
             };
         }
-        public static AlBackgroundWorker NewWorker<T, TProgress>(Action<T, Reporter<TProgress>> work, T argument, Action<TProgress> progress, Action<T, Exception> workFinished = null)
+        public static AlBackgroundWorker NewWorker<T, TProgress>(Action<T, Reporter<TProgress>> work, T argument, Action<int, TProgress> progress, Action<T, Exception> workFinished = null)
         {
             return new BackgroundWorkerVoidProgressFunc<T, TProgress>(synchronizationContext)
             {
@@ -76,7 +76,7 @@ namespace AlbanianXrm.BackgroundWorker
                 WorkFinished = workFinished
             };
         }
-        public static AlBackgroundWorker NewWorker<T, TResult, TProgress>(Func<T, Reporter<TProgress>, TResult> work, T argument, Action<TProgress> progress, Action<T, TResult, Exception> workFinished = null)
+        public static AlBackgroundWorker NewWorker<T, TResult, TProgress>(Func<T, Reporter<TProgress>, TResult> work, T argument, Action<int, TProgress> progress, Action<T, TResult, Exception> workFinished = null)
         {
             return new BackgroundWorkerProgressFunc<T, TResult, TProgress>(synchronizationContext)
             {
@@ -122,7 +122,7 @@ namespace AlbanianXrm.BackgroundWorker
             };
         }
 
-        public static AlBackgroundWorker NewAsyncWorker<TProgress>(Func<Reporter<TProgress>, Task> work, Action<TProgress> progress, Action<Exception> workFinished = null)
+        public static AlBackgroundWorker NewAsyncWorker<TProgress>(Func<Reporter<TProgress>, Task> work, Action<int, TProgress> progress, Action<Exception> workFinished = null)
         {
             return new BackgroundWorkerVoidProgressAsync<TProgress>(synchronizationContext)
             {
@@ -131,7 +131,7 @@ namespace AlbanianXrm.BackgroundWorker
                 WorkFinished = workFinished
             };
         }
-        public static AlBackgroundWorker NewAsyncWorker<TResult, TProgress>(Func<Reporter<TProgress>, Task<TResult>> work, Action<TProgress> progress, Action<TResult, Exception> workFinished = null)
+        public static AlBackgroundWorker NewAsyncWorker<TResult, TProgress>(Func<Reporter<TProgress>, Task<TResult>> work, Action<int, TProgress> progress, Action<TResult, Exception> workFinished = null)
         {
             return new BackgroundWorkerProgressAsync<TResult, TProgress>(synchronizationContext)
             {
@@ -140,7 +140,7 @@ namespace AlbanianXrm.BackgroundWorker
                 WorkFinished = workFinished
             };
         }
-        public static AlBackgroundWorker NewAsyncWorker<T, TProgress>(Func<T, Reporter<TProgress>, Task> work, T argument, Action<TProgress> progress, Action<T, Exception> workFinished = null)
+        public static AlBackgroundWorker NewAsyncWorker<T, TProgress>(Func<T, Reporter<TProgress>, Task> work, T argument, Action<int, TProgress> progress, Action<T, Exception> workFinished = null)
         {
             return new BackgroundWorkerVoidProgressFuncAsync<T, TProgress>(synchronizationContext)
             {
@@ -150,7 +150,7 @@ namespace AlbanianXrm.BackgroundWorker
                 WorkFinished = workFinished
             };
         }
-        public static AlBackgroundWorker NewAsyncWorker<T, TResult, TProgress>(Func<T, Reporter<TProgress>, Task<TResult>> work, T argument, Action<TProgress> progress, Action<T, TResult, Exception> workFinished = null)
+        public static AlBackgroundWorker NewAsyncWorker<T, TResult, TProgress>(Func<T, Reporter<TProgress>, Task<TResult>> work, T argument, Action<int, TProgress> progress, Action<T, TResult, Exception> workFinished = null)
         {
             return new BackgroundWorkerProgressFuncAsync<T, TResult, TProgress>(synchronizationContext)
             {
